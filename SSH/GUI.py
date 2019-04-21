@@ -1,18 +1,26 @@
 import sys
+from PyQt5.QtWidgets import QApplication , QDialog, QMainWindow 
 from PyQt5 import QtGui
 
-
-def window():
-   app = QtGui.QApplication(sys.argv)
-   w = QtGui.QWidget()
-   b = QtGui.QLabel(w)
-   b.setText("Hi there !")
-   w.setGeometry(100,100,200,50)
-   b.move(50,20)
-   w.setWindowTitle("PyQ")
-   w.show()
-   sys.exit(app.exec_())
-if __name__ == '__main__':
-   window()
+class window(QMainWindow):
+    def __init__ (self):
+        super().__init__()
 
 
+        self.title = 'First'
+        self.top = 100
+        self.left = 200
+        self.width = 400
+        self.height = 300
+        self.InitWindow()
+
+    def InitWindow(self):
+        self.setWindowIcon(QtGui.QIcon('77.png'))
+        self.setWindowTitle(self.title)
+        self.setGeometry(self.left,self.top, self.width, self.height)
+
+        self.show()
+
+App = QApplication(sys.argv)
+window = window()
+sys.exit(App.exec())
