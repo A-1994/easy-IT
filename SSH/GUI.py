@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication , QDialog, QMainWindow 
+from PyQt5.QtWidgets import QApplication , QDialog, QMainWindow , QPushButton 
 from PyQt5 import QtGui
 
 class window(QMainWindow):
@@ -18,6 +18,9 @@ class window(QMainWindow):
         self.setWindowIcon(QtGui.QIcon('77.png'))
         self.setWindowTitle(self.title)
         self.setGeometry(self.left,self.top, self.width, self.height)
+
+    def button1(self):
+        self.
 
         self.show()
 
