@@ -2,36 +2,35 @@
 import paramiko
 import module1
 import time
+from PyQt5.QtCore import pyqtSlot
 
 
- 
-cmd='cd project  && python3 Time.py ' 
-print ('Creating connection , please wait.')
-time.sleep(3)
-print ('................')
+gmail = "abduallah.ibrahim.gouda@gmail.com"
+pasword = "1223456"
+ip='192.168.43.182'
+port=22
+username='brown'
+passwordssh='123456'
 
-time.sleep(3)
-print (' .................')
-time.sleep(3)
-print (' ....................')
-try:
-    ssh=paramiko.SSHClient()
-    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh.connect(module1.ip,module1.port,module1.username,module1.passwordssh)
-    time.sleep(3)
-    print ('Getting you script ready , please wait .......')
-except:
-    print('try again ...')
+@pyqtSlot()
+def SSH_MAIN(self):
+      cmd='ls- ltrh' 
+      try:
+          ssh=paramiko.SSHClient()
+          ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+          ssh.connect(GUI.ip,module1.port,module1.username,module1.passwordssh)
+          time.sleep(3)
+      except:
+          pass
+      stdin,stdout,stderr=ssh.exec_command(cmd)
+      outlines=stdout.readlines()
+      resp=''.join(outlines)
+      f= open("GG.txt","a+")
+      f.write('\n')
+      f.write(resp)
+      f.close() 
+      stdin,stdout,stderr=ssh.exec_command('some really useful command')
+      outlines=stdout.readlines()
+      resp=''.join(outlines)
+      sys.exit()
 
-stdin,stdout,stderr=ssh.exec_command(cmd)
-outlines=stdout.readlines()
-resp=''.join(outlines)
-f= open("GG.txt","a+")
-f.write('\n')
-f.write(resp)
-f.close() 
-print ('Done check you GG file .')
-
-stdin,stdout,stderr=ssh.exec_command('some really useful command')
-outlines=stdout.readlines()
-resp=''.join(outlines)
