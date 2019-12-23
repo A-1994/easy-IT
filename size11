@@ -1,0 +1,12 @@
+import datetime
+f = open(r'C:\Users\pc\Desktop\1.txt', 'r')
+year = datetime.date.today()
+year2 = year.year
+month = year.month
+day = year.day
+hour = '12'
+c = open(r"C:\Users\pc\Desktop\{}.txt".format('server.log.'+str(year)+'_'+str(month)+'_'+str(day)+'_'+str(hour)+'_30'), 'w+')
+for i in f.readlines():
+    c.writelines(i)
+f.close()
+c.close()
