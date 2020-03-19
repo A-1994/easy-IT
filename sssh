@@ -1,0 +1,36 @@
+import paramiko
+paramiko.util.log_to_file("paramiko.log")
+
+class core:
+    def __init__(self, host, port, path, user, password):
+        self.host = host
+        self.port = port
+        self.path = path
+        self.user = user
+        self.password = password
+        self.hello = "HI there"
+        self.client  = paramiko.SSHClient()
+
+    def connect(self):
+        super().__init__()
+        self.client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        self.client.connect(self.host, self.port, self.user, self.password)
+
+    def command(self , command):
+        stdin, stdout, stderr =self.client.exec_command(command , timeout=10)
+        return stdout
+
+    def terminate(self):
+        self.client.close()
+        return "Closed Successfully"
+
+    def move(self):
+        move =  self.client.open_sftp()
+        print(self.hello)
+
+
+hi = core('192.168.19.129','22','TEST','brown','123')
+hi.connect()
+hi.command('ls -ltrh')
+hi.move()
+hi.terminate()
